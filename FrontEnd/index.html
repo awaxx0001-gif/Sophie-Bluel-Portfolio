@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<title>Sophie Bluel - Interior Designer</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
+	<meta name="description" content="">
+	<link rel="stylesheet" href="./assets/style.css">
+</head>
+<body>
+<header>
+	<h1>Sophie Bluel <span>Interior Designer</span></h1>
+	<nav>
+		<ul>
+			<li>projects</li>
+			<li>contact</li>
+			<li id="login-link">login</li>
+			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
+		</ul>
+	</nav>
+</header>
+<main>
+	<section id="introduction">
+		<figure>
+			<img src="./assets/images/sophie-bluel.png" alt="">
+		</figure>
+		<article>
+			<h2>Space Designer</h2>
+			<p>I tell your story and bring your ideas to life. I work with you every step of the way—from the design stage until the very end of the project.</p>
+			<p>Together, we’ll decide on the volumes, materials, and colors, while maintaining the space’s character and selection of materials. Every single aspect of the project will be thoroughly monitored, ensuring it remains on schedule and on budget.</p>
+			<p>If necessary, a multidisciplinary team can be brought into your project, including an accredited architect and a decorator.</p>
+		</article>
+		</section>
+	<section id="portfolio">
+    <div class="portfolio-title">
+        <h2>My Projects</h2>
+        <button id="edit-projects" class="edit-projects">Modify</button>
+    </div>
+
+    <div class="filters"></div>
+
+    <div class="gallery"></div>
+</section>
+	<section id="contact">
+		<h2>Contact</h2>
+		<p>Do you have a project in mind? Let’s talk about it!</p>
+		<form action="#" method="post">
+			<label for="name">Name</label>
+			<input type="text" name="name" id="name">
+			<label for="email">Email</label>
+			<input type="email" name="email" id="email">
+			<label for="message">Message</label>
+			<textarea name="message" id="message" cols="30" rows="10"></textarea>
+			<input type="submit" value="Send">
+		</form>
+	</section>
+</main>
+
+<footer>
+	<nav>
+		<ul>
+			<li>Legal Notice</li>
+		</ul>
+	</nav>
+</footer>
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <button id="close-modal" class="close-modal">×</button>
+
+        <h2>Photo Gallery</h2>
+
+        <div id="modal-gallery" class="modal-gallery">
+        </div>
+
+        <button id="add-photo" class="add-photo">
+            Add a photo
+        </button>
+    </div>
+	<div id="add-photo-view" class="modal-content add-photo-view">
+    <button id="back-to-gallery" class="back-modal">←</button>
+    <button id="close-add-photo" class="close-modal">×</button>
+	<h2>Add a photo</h2>
+
+    <form id="add-photo-form">
+        <div class="upload-box">
+    <img id="photo-preview" src="" alt="Photo preview">
+
+    <label for="photo-file" class="upload-button">
+        + Add photo
+    </label>
+
+    <input type="file" id="photo-file" accept="image/png, image/jpeg">
+
+    <p>jpg, png: 4mb max</p>
+</div>
+
+        <label for="photo-title">Title</label>
+        <input type="text" id="photo-title">
+
+        <label for="photo-category">Category</label>
+        <select id="photo-category">
+        </select>
+
+        <button type="submit" class="validate-photo">
+            Validate
+        </button>
+    </form>
+</div>
+
+</div>
+
+<script src="./assets/scripts/script.js"></script>
+</body>
+</html>
