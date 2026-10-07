@@ -37,6 +37,11 @@ if (token) {
 editProjectsButton.addEventListener("click", () => {
     modal.style.display = "flex";
 });
+modal.addEventListener("click", (event) => {
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
+});
 
 closeModalButton.addEventListener("click", () => {
     modal.style.display = "none";
@@ -157,6 +162,31 @@ function updateValidateButton() {
 
   form.querySelector(".validate-photo").disabled =
     !(validPhoto && title && category);
+      let message = form.querySelector("#photo-form-error");
+
+  if (!message) {
+    message = document.createElement("p");
+    message.id = "photo-form-error";
+    message.setAttribute("role", "status");
+    message.style.color = "red";
+    message.style.margin = "0";
+    form.querySelector(".photo-form-divider").before(message);
+  }
+
+  let error = "";
+
+  if (file || title) {
+    if (!validPhoto) {
+      error = "Choose a JPG or PNG image no larger than 4 MB.";
+    } else if (!title) {
+      error = "Please enter a title.";
+    } else if (!category) {
+      error = "Please select a category.";
+    }
+  }
+
+  message.textContent = error;
+  message.hidden = !error;
 }
 
 document.querySelector("#add-photo-form")
