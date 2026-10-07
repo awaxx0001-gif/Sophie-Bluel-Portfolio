@@ -1,6 +1,7 @@
 const token = localStorage.getItem("token");
 const loginLink = document.querySelector("#login-link");
 const editProjectsButton = document.querySelector("#edit-projects");
+const editModeBar = document.querySelector("#edit-mode-bar");
 const modal = document.querySelector("#modal");
 const closeModalButton = document.querySelector("#close-modal");
 const addPhotoButton = document.querySelector("#add-photo");
@@ -13,8 +14,11 @@ const photoFileInput = document.querySelector("#photo-file");
 const photoTitleInput = document.querySelector("#photo-title");
 const photoCategorySelect = document.querySelector("#photo-category");
 if (token) {
+    
     loginLink.textContent = "logout";
     editProjectsButton.style.display = "block";
+    editModeBar.style.display = "block";
+    document.querySelector(".filters").style.display = "none";
 
     loginLink.addEventListener("click", () => {
         localStorage.removeItem("token");
@@ -24,6 +28,7 @@ if (token) {
 } else {
     loginLink.textContent = "login";
     editProjectsButton.style.display = "none";
+    editModeBar.style.display = "none";
 
     loginLink.addEventListener("click", () => {
         window.location.href = "./login.html";
@@ -37,8 +42,9 @@ closeModalButton.addEventListener("click", () => {
     modal.style.display = "none";
 });
 addPhotoButton.addEventListener("click", () => {
-    modalContent.style.display = "none";
-    addPhotoView.style.display = "block";
+  resetAddPhotoForm();
+  modalContent.style.display = "none";
+  addPhotoView.style.display = "block";
 });
 
 backToGalleryButton.addEventListener("click", () => {
@@ -86,14 +92,80 @@ addPhotoForm.addEventListener("submit", async (event) => {
     }
 });
 photoFileInput.addEventListener("change", () => {
-    const file = photoFileInput.files[0];
-    const preview = document.querySelector("#photo-preview");
+  let file = photoFileInput.files[0];
+  const preview = document.querySelector("#photo-preview");
+  const icon = document.querySelector("#upload-icon");
+  const uploadButton = document.querySelector(".upload-button");
+  const uploadHelp = document.querySelector(".upload-box p");
 
-    if (file) {
-        preview.src = URL.createObjectURL(file);
-        preview.style.display = "block";
+  if (preview.src.startsWith("blob:")) {
+    URL.revokeObjectURL(preview.src);
+  }
+
+  if (file) {
+    const validType = ["image/jpeg", "image/png"].includes(file.type);
+    const validSize = file.size <= 4 * 1024 * 1024;
+
+    if (!validType || !validSize) {
+      alert("Choose a JPG or PNG image no larger than 4 MB.");
+      photoFileInput.value = "";
+      file = undefined;
     }
+  }
+
+  if (file) {
+    preview.src = URL.createObjectURL(file);
+    preview.style.display = "block";
+    icon.style.display = "none";
+    uploadButton.style.display = "none";
+    uploadHelp.style.display = "none";
+  } else {
+    preview.removeAttribute("src");
+    preview.style.display = "none";
+    icon.style.display = "";
+    uploadButton.style.display = "";
+    uploadHelp.style.display = "";
+  }
+
+  updateValidateButton();
 });
+function resetAddPhotoForm() {
+  addPhotoForm.reset();
+
+  const preview = document.querySelector("#photo-preview");
+  if (preview.src.startsWith("blob:")) {
+    URL.revokeObjectURL(preview.src);
+  }
+
+  preview.removeAttribute("src");
+  preview.style.display = "none";
+  document.querySelector("#upload-icon").style.display = "";
+  document.querySelector(".upload-button").style.display = "";
+  document.querySelector(".upload-box p").style.display = "";
+
+  updateValidateButton();
+}
+function updateValidateButton() {
+  const form = document.querySelector("#add-photo-form");
+  const file = document.querySelector("#photo-file").files[0];
+  const title = document.querySelector("#photo-title").value.trim();
+  const category = document.querySelector("#photo-category").value;
+
+  const validPhoto = file &&
+    ["image/jpeg", "image/png"].includes(file.type) &&
+    file.size <= 4 * 1024 * 1024;
+
+  form.querySelector(".validate-photo").disabled =
+    !(validPhoto && title && category);
+}
+
+document.querySelector("#add-photo-form")
+  .addEventListener("input", updateValidateButton);
+
+document.querySelector("#add-photo-form")
+  .addEventListener("change", updateValidateButton);
+
+updateValidateButton();
 async function getWorks(categoryId = "all") {
     const response = await fetch("http://localhost:5678/api/works");
     const works = await response.json();
@@ -188,12 +260,20 @@ getCategories();
 }
 function displayFilters(categories) {
     const filtersContainer = document.querySelector(".filters");
+    function setActiveFilter(selectedButton) {
+    filtersContainer.querySelectorAll("button").forEach((btn) => {
+        btn.classList.remove("active");
+    });
+    selectedButton.classList.add("active");
+}
 
     const allButton = document.createElement("button");
     allButton.textContent = "All";
     allButton.dataset.categoryId = "all";
+    allButton.classList.add("active");
     filtersContainer.appendChild(allButton);
     allButton.addEventListener("click", () => {
+        setActiveFilter(allButton);
     getWorks();
 });
 
@@ -203,6 +283,7 @@ function displayFilters(categories) {
     button.dataset.categoryId = category.id;
     filtersContainer.appendChild(button);
     button.addEventListener("click", () => {
+        setActiveFilter(button);
     getWorks(category.id);
 });
 });

@@ -11,6 +11,9 @@
 	<link rel="stylesheet" href="./assets/style.css">
 </head>
 <body>
+	<div id="edit-mode-bar">
+    ✎ Editing Mode
+	</div>
 <header>
 	<h1>Sophie Bluel <span>Interior Designer</span></h1>
 	<nav>
@@ -87,6 +90,7 @@
     <form id="add-photo-form">
         <div class="upload-box">
     <img id="photo-preview" src="" alt="Photo preview">
+	<img id="upload-icon" src="./assets/icons/photo-upload.svg" alt="" width="76" height="76">
 
     <label for="photo-file" class="upload-button">
         + Add photo
@@ -103,9 +107,9 @@
         <label for="photo-category">Category</label>
         <select id="photo-category">
         </select>
+		<hr class="photo-form-divider">
 
-        <button type="submit" class="validate-photo">
-            Validate
+        <button type="submit" class="validate-photo">Confirm</button>
         </button>
     </form>
 </div>

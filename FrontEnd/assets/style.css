@@ -108,21 +108,41 @@ li:hover {
 #introduction img {
 	display: block;
 	margin: auto;
-	width: 80%;
+	width: 474px;
+height: 355px;
+object-fit: cover;
 }
 
 #introduction article {
 	flex: 1
+    
 }
 #introduction h2 {
 	margin-bottom: 1em;
+        font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 100%;
+    letter-spacing: 0;
+    color: #1D6154;
 }
-
 #introduction p {
 	margin-bottom: 0.5em;
+        font-family: 'Work Sans', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0;
+    color: #3D3D3D;
 }
-#portfolio h2 {
+Aortfolio h2 {
     text-align: center;
+        font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 100%;
+    letter-spacing: 0;
+    color: #1D6154;
 }
 .portfolio-title {
     display: flex;
@@ -153,6 +173,8 @@ li:hover {
 
 .gallery img {
 	width: 100%;
+    height: 400px;
+object-fit: cover;
 
 }
 .filters {
@@ -164,18 +186,27 @@ li:hover {
 
 .filters button {
     background-color: transparent;
-    border: none;
-    font-family: inherit;
+    border: 1px solid #1D6154;
+    border-radius: 60px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
     font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0;
+    color: #1D6154;
     cursor: pointer;
-    padding: 8px 12px;
+    padding: 8px 18px;
+}
+.filters button.active {
+    background-color: #1D6154;
+    color: #FFFFFF;
 }
 
 .filters button:hover {
     font-weight: bold;
 }
 @media (max-width: 767px) {
-    .filters {
+   .filters {
         gap: 5px;
         justify-content: space-between;
     }
@@ -299,15 +330,25 @@ footer nav ul {
 }
 
 .modal-content {
+    box-sizing: border-box;
     background-color: white;
     width: 630px;
-    min-height: 600px;
+    height: 688px;
+    max-width: calc(100vw - 32px);
+    max-height: calc(100vh - 32px);
+    overflow-y: auto;
     padding: 30px;
     border-radius: 10px;
     position: relative;
 }
 
 .modal-content h2 {
+    font-family: "Work Sans", sans-serif;
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 100%;
+    letter-spacing: 0;
+    color: #000000;
     text-align: center;
     margin-top: 30px;
 }
@@ -323,18 +364,22 @@ footer nav ul {
 }
 
 .modal-gallery {
-    margin: 40px auto;
-    width: 80%;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
-    padding-bottom: 40px;
-    border-bottom: 1px solid #B3B3B3;
+  margin: 50px auto 0;
+  width: 420px;
+  min-height: 393px;
+  display: grid;
+  grid-template-columns: repeat(5, 76.61px);
+  grid-auto-rows: 102.57px;
+  justify-content: center;
+  align-content: start;
+  gap: 10px 9.17px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid #B3B3B3;
 }
 
 .modal-item img {
-    width: 100%;
-    height: 120px;
+    width: 76.61px;
+    height: 102.57px;
     object-fit: cover;
     display: block;
 }
@@ -355,14 +400,23 @@ footer nav ul {
     font-size: 12px;
 }
 .add-photo {
+    box-sizing: border-box;
     display: block;
-    margin: 30px auto;
-    padding: 10px 40px;
+    width: 193px;
+    height: 35px;
+    margin: 37px auto 0;
+    padding: 0;
     border: none;
     border-radius: 60px;
     background-color: #1D6154;
     color: white;
     cursor: pointer;
+    font-family: "Syne", sans-serif;
+font-weight: 700;
+font-size: 14px;
+line-height: 100%;
+letter-spacing: 0;
+text-align: center;
 }
 .add-photo-view {
     display: none;
@@ -383,7 +437,8 @@ footer nav ul {
 }
 
 #add-photo-form {
-    width: 70%;
+    width: 420px;
+max-width: 100%;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -403,44 +458,74 @@ footer nav ul {
 
 #photo-title,
 #photo-category {
-    height: 45px;
-    border: none;
-    background-color: white;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.09);
-    padding: 10px;
+  height: 51px;
+  border: none;
+  background-color: white;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.09);
+  padding: 10px;
+}
+#add-photo-form label[for="photo-title"] {
+  margin-top: 22px;
+}
+
+#add-photo-form label[for="photo-category"] {
+  margin-top: 13px;
 }
 
 .validate-photo {
-    width: 180px;
-    margin: 30px auto 0;
-    padding: 10px;
-    border: none;
-    border-radius: 60px;
-    background-color: #1D6154;
-    color: white;
-    cursor: pointer;
+  box-sizing: border-box;
+  width: 237px;
+  height: 36px;
+  margin: 21px auto 0;
+  padding: 0;
+  border: none;
+  border-radius: 60px;
+  background-color: #1D6154;
+  color: white;
+  cursor: pointer;
+  font-family: "Syne", sans-serif;
+font-weight: 700;
+font-size: 14px;
+line-height: 100%;
+letter-spacing: 0;
+text-align: center;
 }
 .upload-box {
-    background-color: #E8F1F6;
-    width: 100%;
-    min-height: 180px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+  box-sizing: border-box;
+  background-color: #E8F1F6;
+  width: 100%;
+  height: 169px;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
+
 
 .upload-box input[type="file"] {
     display: none;
 }
 
 .upload-button {
-    background-color: #CBD6DC;
-    color: #306685;
-    padding: 10px 25px;
-    border-radius: 50px;
+   font-family: "Work Sans", sans-serif;
+font-weight: 500;
+font-size: 14px;
+line-height: 100%;
+letter-spacing: 0;
+text-align: center;
+color: #306685;
     cursor: pointer;
+    box-sizing: border-box;
+width: 173px;
+height: 36px;
+padding: 0;
+border-radius: 50px;
+background-color: #CBD6DC;
+display: flex;
+align-items: center;
+justify-content: center;
 }
 
 .upload-box p {
@@ -454,3 +539,21 @@ footer nav ul {
     max-width: 100%;
     object-fit: contain;
 }
+.photo-form-divider {
+  width: 100%;
+  margin: 37px 0 0;
+  border: none;
+  border-top: 1px solid #B3B3B3;
+}
+#add-photo-view {
+  height: 670px;
+}
+
+#add-photo-view h2 {
+  margin-bottom: 40px;
+}
+.validate-photo:disabled {
+  background-color: #A7A7A7;
+  cursor: not-allowed;
+}
+
