@@ -114,7 +114,7 @@ height: 355px;
 object-fit: cover;
 }
 
-#introduction article {
+#introduction .introduction-text{
 	flex: 1
     
 }
